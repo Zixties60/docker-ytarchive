@@ -4,14 +4,14 @@ From alpine:3.20.0
 RUN apk add --no-cache curl unzip ffmpeg bash
 
 # Create directories
-RUN mkdir -p /config /data
+RUN mkdir -p /app /config /data
 
-WORKDIR /config
-
-COPY --chmod=0755 entrypoint.sh entrypoint.sh
+COPY --chmod=0755 entrypoint.sh /app/entrypoint.sh
 
 # Set environment variable for update
 ENV UPDATE_YTARCHIVE=false
 
+WORKDIR /app
+
 VOLUME ["/config", "/data"]
-CMD [ "./entrypoint.sh" ]
+CMD [ "/app/entrypoint.sh" ]
