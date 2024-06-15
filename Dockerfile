@@ -10,6 +10,8 @@ COPY --chmod=0755 entrypoint.sh /app/entrypoint.sh
 
 # Set environment variable for update
 ENV UPDATE_YTARCHIVE=false
+ENV YTARCHIVE_VERBOSE=true
+ENV CHANNEL_URL=""
 
 WORKDIR /app
 

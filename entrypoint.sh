@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # Define the URL to download ytarchive from
+VERBOSE=""
 YTARCHIVE_URL="https://github.com/Kethsar/ytarchive/releases/download/v0.4.0/ytarchive_linux_amd64.zip"
 YTARCHIVE_ZIP="ytarchive_linux_amd64.zip"
 YTARCHIVE_BIN="ytarchive"
@@ -16,8 +17,8 @@ download_ytarchive() {
     echo "ytarchive downloaded and unzipped successfully."
 }
 
-# Check if CHANNEL_URL is provided
-if [ -z "$CHANNEL_URL" ]; then
+# # Check if CHANNEL_URL is provided
+if [ "$CHANNEL_URL" = "" ]; then
     echo "Error: CHANNEL_URL is not provided. Exiting."
     exit 1
 fi
@@ -31,5 +32,10 @@ if [ "$UPDATE_YTARCHIVE" = "true" ] || [ ! -f "./$YTARCHIVE_BIN" ]; then
     fi
 fi
 
+# Check if CHANNEL_URL is provided
+if [ "$YTARCHIVE_VERBOSE" = "true" ]; then
+    VERBOSE="-v"
+fi
+
 # Run ytarchive with the remaining arguments
-./$YTARCHIVE_BIN --monitor-channel --add-metadata --merge --mkv -r 600 -t -w --write-description --write-thumbnail  -o "/data/%%(channel)s/%%(upload_date)s/%%(title)s" $CHANNEL_URL best
+./$YTARCHIVE_BIN $VERBOSE --monitor-channel --add-metadata --merge --mkv -r 600 -t -w --write-description --write-thumbnail  -o "/data/%%(channel)s/%%(upload_date)s/%%(title)s" $CHANNEL_URL best
