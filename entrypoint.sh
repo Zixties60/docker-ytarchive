@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Define the URL to download ytarchive from
 YTARCHIVE_URL="https://github.com/Kethsar/ytarchive/releases/download/v0.4.0/ytarchive_linux_amd64.zip"

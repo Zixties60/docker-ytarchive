@@ -1,7 +1,7 @@
 From alpine:3.20.0
 
 # Install required packages
-RUN apk add --no-cache curl unzip ffmpeg
+RUN apk add --no-cache curl unzip ffmpeg bash
 
 # Create directories
 RUN mkdir -p /config /data
