@@ -13,7 +13,7 @@ ENV UPDATE_YTARCHIVE=false
 ENV YTARCHIVE_VERBOSE=true
 ENV CHANNEL_URL=""
 
-WORKDIR /app
+WORKDIR /config
 
 VOLUME ["/config", "/data"]
 CMD [ "/app/entrypoint.sh" ]
