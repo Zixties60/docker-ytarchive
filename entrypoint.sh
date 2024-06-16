@@ -38,4 +38,4 @@ if [ "$YTARCHIVE_VERBOSE" = "true" ]; then
 fi
 
 # Run ytarchive with the remaining arguments
-./$YTARCHIVE_BIN $VERBOSE --monitor-channel --add-metadata --merge --mkv -r 600 -t -w --write-description --write-thumbnail  -o "/data/%%(channel)s/%%(upload_date)s/%%(title)s" $CHANNEL_URL best
+./$YTARCHIVE_BIN $VERBOSE --monitor-channel -w -r 600 --merge --mkv --add-metadata --thumbnail --write-description --write-thumbnail --newline -o "/data/%%(channel)s/%%(upload_date)s/%%(title)s" $CHANNEL_URL best
