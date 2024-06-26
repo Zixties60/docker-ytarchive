@@ -6,6 +6,11 @@ YTARCHIVE_URL="https://github.com/Kethsar/ytarchive/releases/download/v0.4.0/yta
 YTARCHIVE_ZIP="ytarchive_linux_amd64.zip"
 YTARCHIVE_BIN="ytarchive"
 
+echo "Live channel: [$CHANNEL_URL]"
+echo "Output video file name: [$OUTPUT_VIDEO]"
+echo "Update ytarchive: [$UPDATE_YTARCHIVE]" 
+echo "Verbose: [$YTARCHIVE_VERBOSE]" 
+
 # Function to download and unzip ytarchive
 download_ytarchive() {
     echo "Downloading ytarchive..."
@@ -43,5 +48,18 @@ if [ "$YTARCHIVE_VERBOSE" = "true" ]; then
     VERBOSE="-v"
 fi
 
+ARGS="$VERBOSE --monitor-channel -w -r 600 --merge --mkv --add-metadata --thumbnail --write-description --write-thumbnail --newline -o $OUTPUT_VIDEO $CHANNEL_URL best"
+
+echo "ytarchive args: [$ARGS]"
+
+echo "        _                       _      _              "
+echo "       | |                     | |    (_)             "
+echo " _   _ | |_   __ _  _ __   ___ | |__   _ __   __  ___ "
+echo "| | | || __| / _\` || '__| / __|| '_ \ | |\ \ / / / _ \\"
+echo "| |_| || |_ | (_| || |   | (__ | | | || | \ V / |  __/"
+echo " \__, | \__| \__,_||_|    \___||_| |_||_|  \_/   \___|"
+echo "  __/ |                                               "
+echo " |___/                                                "
+
 # Run ytarchive with the remaining arguments
-./$YTARCHIVE_BIN $VERBOSE --monitor-channel -w -r 600 --merge --mkv --add-metadata --thumbnail --write-description --write-thumbnail --newline -o $OUTPUT_VIDEO $CHANNEL_URL best
+./$YTARCHIVE_BIN $ARGS
