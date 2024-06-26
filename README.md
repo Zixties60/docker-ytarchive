@@ -14,6 +14,7 @@ services:
         image: zixties60/docker_ytarchive:latest
         environment:
             - CHANNEL_URL="your_channel_url" # Ensure this environment variable is set
+            - OUTPUT_VIDEO="output_file_name" # Ensure this environment variable is set
             - UPDATE_YTARCHIVE=false
             - VERBOSE=true # Enable verbose logging
         volumes:
