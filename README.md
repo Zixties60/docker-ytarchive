@@ -21,7 +21,6 @@ services:
         environment:
             - CHANNEL_URL="your_channel_url" # Ensure this environment variable is set
             - OUTPUT_VIDEO="output_file_name" # Ensure this environment variable is set
-            - UPDATE_YTARCHIVE=false
             - YTARCHIVE_VERBOSE=true # Enable verbose logging
         volumes:
             - host/path/to/config:/config
@@ -31,8 +30,7 @@ services:
 ## Environment Variables
 
 -   `CHANNEL_URL`: The URL of the YouTube channel to monitor and download.
--   `OUTPUT_VIDEO`: ytarchive output video file name.
--   `UPDATE_YTARCHIVE`: Set to `true` to download the latest version of `ytarchive`.
+-   `OUTPUT_VIDEO`: ytarchive output video file name.\
 -   `YTARCHIVE_VERBOSE`: Set to `true` to enable verbose logging for debugging.
 
 ## How to Use
@@ -60,7 +58,6 @@ services:
 
     - `CHANNEL_URL`: The YouTube channel URL to monitor and download videos from. **(required)**
     - `OUTPUT_VIDEO` (default: `/data/%(channel)s/%(upload_date)s/%(title)s`): ytarchive output video file name.
-    - `UPDATE_YTARCHIVE` (default: `false`): Set to `true` to force download the latest `ytarchive`.
     - `YTARCHIVE_VERBOSE` (default: `false`): Set to `true` to enable verbose logging.
 
 ## Troubleshooting
