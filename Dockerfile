@@ -11,7 +11,7 @@ COPY --chmod=0755 entrypoint.sh /app/entrypoint.sh
 
 # Set environment variable for update
 ENV YTARCHIVE_VERBOSE=true
-ENV OUTPUT_VIDEO="/data/%(channel)s/%(upload_date)s/%(title)s"
+ENV OUTPUT_VIDEO="/data/%(channel)s/%(title)s (%(upload_date)s)/%(title)s"
 ENV CHANNEL_URL=""
 
 WORKDIR /config

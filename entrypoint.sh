@@ -24,10 +24,6 @@ if [ "$YTARCHIVE_VERBOSE" = "true" ]; then
     VERBOSE="--verbose --debug"
 fi
 
-ARGS="$VERBOSE --monitor-channel -w -r 600 --directory-permissions 777 --file-permissions 666 --merge --mkv --add-metadata --write-description --write-thumbnail --newline -o $OUTPUT_VIDEO $CHANNEL_URL best"
-
-echo "ytarchive args: [$ARGS]"
-
 echo "        _                       _      _              "
 echo "       | |                     | |    (_)             "
 echo " _   _ | |_   __ _  _ __   ___ | |__   _ __   __  ___ "
@@ -38,4 +34,4 @@ echo "  __/ |                                               "
 echo " |___/                                                "
 
 # Run ytarchive with the remaining arguments
-ytarchive $ARGS
+ytarchive $VERBOSE --monitor-channel -w -r 600 --directory-permissions 777 --file-permissions 666 --merge --mkv --add-metadata --write-description --write-thumbnail --newline -o "$OUTPUT_VIDEO" $CHANNEL_URL best

@@ -2,6 +2,12 @@
 
 This repository contains a Docker setup for downloading YouTube archive streams using ytarchive. The setup includes a customizable shell script and Docker Compose configuration to automate the download process.
 
+## Docker run command
+
+```shell
+docker run --env=CHANNEL_URL=your_channel_url --env=YTARCHIVE_VERBOSE=true --env=OUTPUT_VIDEO="/data/%(channel)s/%(title)s (%(upload_date)s)/%(title)s" --restart=unless-stopped -d docker-ytarchive:latest
+```
+
 ## Docker Compose Configuration
 
 The docker-compose.yml file sets up the service, environment variables, and volume mounts:
@@ -16,7 +22,7 @@ services:
             - CHANNEL_URL="your_channel_url" # Ensure this environment variable is set
             - OUTPUT_VIDEO="output_file_name" # Ensure this environment variable is set
             - UPDATE_YTARCHIVE=false
-            - VERBOSE=true # Enable verbose logging
+            - YTARCHIVE_VERBOSE=true # Enable verbose logging
         volumes:
             - host/path/to/config:/config
             - host/path/to/data:/data
@@ -27,7 +33,7 @@ services:
 -   `CHANNEL_URL`: The URL of the YouTube channel to monitor and download.
 -   `OUTPUT_VIDEO`: ytarchive output video file name.
 -   `UPDATE_YTARCHIVE`: Set to `true` to download the latest version of `ytarchive`.
--   `VERBOSE`: Set to `true` to enable verbose logging for debugging.
+-   `YTARCHIVE_VERBOSE`: Set to `true` to enable verbose logging for debugging.
 
 ## How to Use
 
@@ -55,7 +61,7 @@ services:
     - `CHANNEL_URL`: The YouTube channel URL to monitor and download videos from. **(required)**
     - `OUTPUT_VIDEO` (default: `/data/%(channel)s/%(upload_date)s/%(title)s`): ytarchive output video file name.
     - `UPDATE_YTARCHIVE` (default: `false`): Set to `true` to force download the latest `ytarchive`.
-    - `VERBOSE` (default: `false`): Set to `true` to enable verbose logging.
+    - `YTARCHIVE_VERBOSE` (default: `false`): Set to `true` to enable verbose logging.
 
 ## Troubleshooting
 
