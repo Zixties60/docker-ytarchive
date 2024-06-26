@@ -2,6 +2,7 @@
 
 # Define the URL to download ytarchive from
 VERBOSE=""
+OUTPUT_VIDEO=""
 YTARCHIVE_URL="https://github.com/Kethsar/ytarchive/releases/download/v0.4.0/ytarchive_linux_amd64.zip"
 YTARCHIVE_ZIP="ytarchive_linux_amd64.zip"
 YTARCHIVE_BIN="ytarchive"
@@ -23,6 +24,12 @@ if [ "$CHANNEL_URL" = "" ]; then
     exit 1
 fi
 
+# # Check if OUTPUT_VIDEO is provided
+if [ "$OUTPUT_VIDEO" = "" ]; then
+    echo "Error: OUTPUT_VIDEO is not provided. Exiting."
+    exit 1
+fi
+
 # Check for the "UPDATE_YTARCHIVE" argument or download when not exists
 if [ "$UPDATE_YTARCHIVE" = "true" ] || [ ! -f "./$YTARCHIVE_BIN" ]; then
     download_ytarchive
@@ -38,4 +45,4 @@ if [ "$YTARCHIVE_VERBOSE" = "true" ]; then
 fi
 
 # Run ytarchive with the remaining arguments
-./$YTARCHIVE_BIN $VERBOSE --monitor-channel -w -r 600 --merge --mkv --add-metadata --thumbnail --write-description --write-thumbnail --newline -o "/data/%%(channel)s/%%(upload_date)s/%%(title)s" $CHANNEL_URL best
+./$YTARCHIVE_BIN $VERBOSE --monitor-channel -w -r 600 --merge --mkv --add-metadata --thumbnail --write-description --write-thumbnail --newline -o $OUTPUT_VIDEO $CHANNEL_URL best

@@ -24,6 +24,7 @@ services:
 ## Environment Variables
 
 -   `CHANNEL_URL`: The URL of the YouTube channel to monitor and download.
+-   `OUTPUT_VIDEO`: ytarchive output video file name.
 -   `UPDATE_YTARCHIVE`: Set to `true` to download the latest version of `ytarchive`.
 -   `VERBOSE`: Set to `true` to enable verbose logging for debugging.
 
@@ -51,6 +52,7 @@ services:
 4. **Set Environment Variables:**
 
     - `CHANNEL_URL`: The YouTube channel URL to monitor and download videos from. **(required)**
+    - `OUTPUT_VIDEO` (default: `/data/%(channel)s/%(upload_date)s/%(title)s`): ytarchive output video file name.
     - `UPDATE_YTARCHIVE` (default: `false`): Set to `true` to force download the latest `ytarchive`.
     - `VERBOSE` (default: `false`): Set to `true` to enable verbose logging.
 
