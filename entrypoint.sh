@@ -45,10 +45,10 @@ fi
 
 # Check if CHANNEL_URL is provided
 if [ "$YTARCHIVE_VERBOSE" = "true" ]; then
-    VERBOSE="-v"
+    VERBOSE="--verbose --debug"
 fi
 
-ARGS="$VERBOSE --monitor-channel -w -r 600 --merge --mkv --add-metadata --thumbnail --write-description --write-thumbnail --newline -o $OUTPUT_VIDEO $CHANNEL_URL best"
+ARGS="$VERBOSE --monitor-channel -w -r 600 -dp 777 -fp 666 --merge --mkv --add-metadata --thumbnail --write-description --write-thumbnail --newline -o $OUTPUT_VIDEO $CHANNEL_URL best"
 
 echo "ytarchive args: [$ARGS]"
 
