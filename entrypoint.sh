@@ -34,4 +34,4 @@ echo "  __/ |                                               "
 echo " |___/                                                "
 
 # Run ytarchive with the remaining arguments
-ytarchive $VERBOSE --monitor-channel -w -r 600 --directory-permissions 777 --file-permissions 666 --merge --mkv --add-metadata --write-description --write-thumbnail --newline -o "$OUTPUT_VIDEO" $CHANNEL_URL best
+ytarchive $VERBOSE --monitor-channel -w -r 600 --directory-permissions 0777 --file-permissions 0666 --merge --mkv --add-metadata --write-description --write-thumbnail --newline -o "$OUTPUT_VIDEO" $CHANNEL_URL best
