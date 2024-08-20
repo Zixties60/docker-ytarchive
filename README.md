@@ -1,5 +1,4 @@
 # Docker for ytarchive
-[![Docker Image](https://github.com/Zixties60/docker-ytarchive/actions/workflows/docker-build-push.yml/badge.svg)](https://github.com/Zixties60/docker-ytarchive/actions/workflows/docker-build-push.yml)
 [![GitHub Package](https://github.com/Zixties60/docker-ytarchive/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/Zixties60/docker-ytarchive/actions/workflows/docker-publish.yml)
 
 This repository contains a Docker setup for downloading YouTube archive streams using ytarchive. The setup includes a customizable shell script and Docker Compose configuration to automate the download process.
@@ -7,7 +6,7 @@ This repository contains a Docker setup for downloading YouTube archive streams 
 ## Docker run command
 
 ```shell
-docker run --env=CHANNEL_URL=your_channel_url --env=YTARCHIVE_VERBOSE=true --env=OUTPUT_VIDEO="/data/%(channel)s/%(title)s (%(upload_date)s)/%(title)s" --restart=unless-stopped -d docker-ytarchive:latest
+docker run --env=CHANNEL_URL=your_channel_url --env=YTARCHIVE_VERBOSE=true --env=OUTPUT_VIDEO="/data/%(channel)s/%(title)s (%(upload_date)s)/%(title)s" --restart=unless-stopped -d ghcr.io/zixties60/docker-ytarchive:main
 ```
 
 ## Docker Compose Configuration
@@ -19,7 +18,7 @@ version: "3.8"
 
 services:
     ytarchive:
-        image: zixties60/docker_ytarchive:latest
+        image: ghcr.io/zixties60/docker-ytarchive:main
         environment:
             - CHANNEL_URL="your_channel_url" # Ensure this environment variable is set
             - OUTPUT_VIDEO="output_file_name" # Ensure this environment variable is set
