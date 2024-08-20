@@ -1,4 +1,5 @@
 # Docker for ytarchive
+[![Build and Push Multi-Arch Docker Image](https://github.com/Zixties60/docker-ytarchive/actions/workflows/docker-build-push.yml/badge.svg)](https://github.com/Zixties60/docker-ytarchive/actions/workflows/docker-build-push.yml)
 
 This repository contains a Docker setup for downloading YouTube archive streams using ytarchive. The setup includes a customizable shell script and Docker Compose configuration to automate the download process.
 
