@@ -1,12 +1,22 @@
 # Docker for ytarchive
+
 [![GitHub Package](https://github.com/Zixties60/docker-ytarchive/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/Zixties60/docker-ytarchive/actions/workflows/docker-publish.yml)
 
-This repository contains a Docker setup for downloading YouTube archive streams using ytarchive. The setup includes a customizable shell script and Docker Compose configuration to automate the download process.
+This repository contains a Docker setup for downloading YouTube archive streams using [Kethsar/ytarchive](https://github.com/Kethsar/ytarchive). The setup includes a customizable shell script and Docker Compose configuration to automate the download process.
 
 ## Docker run command
 
 ```shell
-docker run --env=CHANNEL_URL=your_channel_url --env=YTARCHIVE_VERBOSE=true --env=OUTPUT_VIDEO="/data/%(channel)s/%(title)s (%(upload_date)s)/%(title)s" --restart=unless-stopped -d ghcr.io/zixties60/docker-ytarchive:main
+docker run -d \
+  --name ytarchive \
+  -e PUID=1000 \  # Replace with your host user ID
+  -e PGID=1000 \  # Replace with your host group ID
+  -e CHANNEL_URL="your_channel_url" \  # Replace with the YouTube channel URL
+  -e OUTPUT_VIDEO="output_file_name" \  # Replace with the desired output file name format
+  -e YTARCHIVE_VERBOSE=true \  # Set to true for verbose logging
+  -v /host/path/to/config:/config \  # Map the config directory
+  -v /host/path/to/data:/data \  # Map the data directory
+  ghcr.io/zixties60/docker-ytarchive:main
 ```
 
 ## Docker Compose Configuration
@@ -14,17 +24,30 @@ docker run --env=CHANNEL_URL=your_channel_url --env=YTARCHIVE_VERBOSE=true --env
 The docker-compose.yml file sets up the service, environment variables, and volume mounts:
 
 ```yaml
-version: "3.8"
-
 services:
     ytarchive:
         image: ghcr.io/zixties60/docker-ytarchive:main
         environment:
-            - CHANNEL_URL="your_channel_url" # Ensure this environment variable is set
-            - OUTPUT_VIDEO="output_file_name" # Ensure this environment variable is set
-            - YTARCHIVE_VERBOSE=true # Enable verbose logging
+            # PUID and PGID specify the user and group IDs for running the container processes.
+            # Use these to match the permissions of the host system files.
+            # Example: If your host user's UID is 1000 and GID is 1000, set PUID=1000 and PGID=1000.
+            PUID: 1000 # Replace with the correct User ID
+            PGID: 1000 # Replace with the correct Group ID
+
+            # Specify the YouTube channel URL to monitor.
+            CHANNEL_URL: "your_channel_url" # Replace with the desired YouTube channel URL
+
+            # Specify the output file name format for videos.
+            OUTPUT_VIDEO: "output_file_name" # Replace with the desired output file name format
+
+            # Enable verbose logging if set to true.
+            YTARCHIVE_VERBOSE: "true" # Set to "true" to enable verbose logging
+
         volumes:
+            # Map the host path for configuration files.
             - host/path/to/config:/config
+
+            # Map the host path for storing downloaded videos and data.
             - host/path/to/data:/data
 ```
 
