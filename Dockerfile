@@ -1,7 +1,12 @@
-From golang:1.21-alpine
+From golang:1.23-alpine
 
 # Install required packages
-RUN apk add --no-cache ffmpeg bash
+RUN apk update && apk add --no-cache \
+    bash \
+    ffmpeg \
+    su-exec \
+    tzdata
+
 RUN go install github.com/Kethsar/ytarchive@dev
 
 # Create directories
